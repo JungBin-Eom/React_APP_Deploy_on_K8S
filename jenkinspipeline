@@ -1,7 +1,7 @@
-# Jenkinsfile
+// Jenkinsfile
 pipeline {
-    agent { # 파이프라인을 실행하기 위한 노드(Pod) 정의
-        kubernetes { # 쿠버네티스 리소스를 정의하는 YAML 파일 형태로도 표현 가능
+    agent { // 파이프라인을 실행하기 위한 노드(Pod) 정의
+        kubernetes { // 쿠버네티스 리소스를 정의하는 YAML 파일 형태로도 표현 가능
             yaml '''
 apiVersion: v1
 kind: Pod
@@ -13,7 +13,7 @@ spec:
     command: ["cat"]
     env:
     - name: PROJECT_URL
-      value: https://github.com/JungBin-Eom/React_APP_Deploy_on_K8S
+      value: https://github.com/JungBin-Eom/React_APP_Deploy_on_K8S.git
   - name: docker # docker container 실행(dockerfile을 기반으로 이미지 생성)
     image: docker
     tty: true 
@@ -35,7 +35,7 @@ spec:
       stage('Checkout') {
         steps {
           container('git') {
-            # clone source code
+            // clone source code
             sh "git clone \$PROJECT_URL"
           }
         }
@@ -43,9 +43,8 @@ spec:
       stage('Build') {
         steps {
           container('docker') {
-            # build docker image
+            // build docker image
             sh """
-            cd \$PROJECT_NAME/react-app-ci-pipeline
             docker build -t \$PROJECT_NAME .
             """
           }
@@ -54,12 +53,12 @@ spec:
       stage('Push') {
         steps {
           container('docker') {
-            # get dockerhub credentials
+            // get dockerhub credentials
             withCredentials([[$class: 'UsernamePasswordMultiBinding',
               credentialsId: 'dockerhub',
               usernameVariable: 'DOCKERHUB_USER',
               passwordVariable: 'DOCKERHUB_PASSWORD']]) {
-              # image packaging and upload
+              // image packaging and upload
               sh """
                 docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
                 docker tag \$PROJECT_NAME ${DOCKERHUB_USER}/\$PROJECT_NAME
