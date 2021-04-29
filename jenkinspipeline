@@ -13,7 +13,7 @@ spec:
     command: ["cat"]
     env:
     - name: PROJECT_URL
-      value: https://github.com/JungBin-Eom/React_APP_Deploy_on_K8S.git
+      value: https://github.com/JungBin-Eom.git
   - name: docker # docker container 실행(dockerfile을 기반으로 이미지 생성)
     image: docker
     tty: true 
@@ -45,6 +45,7 @@ spec:
           container('docker') {
             // build docker image
             sh """
+						cd \$PROJECT_NAME/React_APP_Deploy_on_K8S
             docker build -t \$PROJECT_NAME .
             """
           }
