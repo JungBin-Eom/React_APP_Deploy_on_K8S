@@ -45,7 +45,7 @@ spec:
           container('docker') {
             // build docker image
             sh """
-            cd \$PROJECT_NAME/React_APP_Deploy_on_K8S
+            cd React_APP_Deploy_on_K8S
             docker build -t \$PROJECT_NAME .
             """
           }
