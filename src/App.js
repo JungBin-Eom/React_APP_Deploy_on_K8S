@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          This is the second version of Ricky React!
+          This is the second version of Ricky React.
         </p>
         <a
           className="App-link"
