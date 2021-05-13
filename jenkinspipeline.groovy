@@ -1,4 +1,4 @@
-properties([pipelineTriggers([githubPush()])]):
+properties([pipelineTriggers([githubPush()])])
 // Jenkinsfile
 pipeline {
     agent { // 파이프라인을 실행하기 위한 노드(Pod) 정의
