@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: myreactservice
+spec:
+  rules:
+  - host: reactapp.13.209.81.249.sslip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: myreactservice
+          servicePort: 8080

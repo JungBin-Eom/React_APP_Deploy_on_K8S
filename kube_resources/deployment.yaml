@@ -1,0 +1,27 @@
+# mydeploy.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactdeploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rickyreact
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%  
+      maxSurge: 25%
+  template:
+    metadata:
+      labels:
+        app: rickyreact 
+    spec:
+      containers:
+      - name: myreact
+        image: ejb0329/react-app-ci-pipeline:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000 
+      restartPolicy: Always
