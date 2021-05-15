@@ -6,7 +6,7 @@ metadata:
   name: myreactservice
 spec:
   rules:
-  - host: reactapp.13.209.81.249.sslip.io
+  - host: reactapp.3.35.25.64.sslip.io
     http:
       paths:
       - path: /
